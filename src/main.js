@@ -27,13 +27,12 @@ userForm.addEventListener('submit', event => {
     apiRequest(userRequest)
       .then(response => {
         renderRequest(response, gallery);
-        stopLoader();
       })
       .catch(error => {
-        stopLoader();
         iziToast.error({ message: error, position: 'center', timeout: 2000 });
       })
       .finally(() => {
+        stopLoader();
         formReset();
       });
   } else {

@@ -2,7 +2,6 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export function renderRequest(arr, link) {
-  clearImg();
   const markup = arr
     .map(
       ({
@@ -41,6 +40,8 @@ export function renderRequest(arr, link) {
     )
     .join('');
   link.insertAdjacentHTML('beforeend', markup);
+  const images = document.querySelectorAll('.item-img');
+  images.forEach(img => (img.onload = () => img.classList.add('loaded')));
   const simpleGallery = new SimpleLightbox('.item a', {
     captions: true,
     captionsData: 'alt',
@@ -49,13 +50,9 @@ export function renderRequest(arr, link) {
   simpleGallery.refresh();
 }
 
-export function clearImg() {
-  const items = document.querySelectorAll('.item');
-  if (items.length !== 0) {
-    for (const item of items) {
-      item.remove();
-    }
-  } else {
-    return;
+export function clearGallery() {
+  const gallery = document.querySelector('.gallery');
+  if (gallery) {
+    gallery.replaceChildren();
   }
 }

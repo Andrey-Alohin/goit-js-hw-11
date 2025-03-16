@@ -1,7 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { apiRequest } from './js/pixabay-api';
-import { clearImg, renderRequest } from './js/render-functions';
+import { clearGallery, renderRequest } from './js/render-functions';
 const userForm = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
 
@@ -17,6 +17,7 @@ const formReset = () => userForm.reset();
 
 userForm.addEventListener('submit', event => {
   event.preventDefault();
+  clearGallery();
   const userRequest = userForm
     .querySelector('[name="search-text"]')
     .value.trim();
@@ -29,7 +30,6 @@ userForm.addEventListener('submit', event => {
       })
       .catch(error => {
         stopLoader();
-        clearImg();
         iziToast.error({ message: error, position: 'center', timeout: 2000 });
       })
       .finally(() => {

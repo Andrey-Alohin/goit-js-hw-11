@@ -8,7 +8,6 @@ const gallery = document.querySelector('.gallery');
 const elemLoader = document.querySelector('.loader');
 function startLoader() {
   elemLoader.classList.add('active');
-  console.log('loader start');
 }
 function stopLoader() {
   elemLoader.classList.remove('active');

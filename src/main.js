@@ -8,6 +8,7 @@ const gallery = document.querySelector('.gallery');
 const elemLoader = document.querySelector('.loader');
 function startLoader() {
   elemLoader.classList.add('active');
+  console.log('loader start');
 }
 function stopLoader() {
   elemLoader.classList.remove('active');
@@ -25,8 +26,8 @@ userForm.addEventListener('submit', event => {
     startLoader();
     apiRequest(userRequest)
       .then(response => {
-        stopLoader();
         renderRequest(response, gallery);
+        stopLoader();
       })
       .catch(error => {
         stopLoader();

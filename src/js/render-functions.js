@@ -1,6 +1,12 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const simpleGallery = new SimpleLightbox('.item a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 1000,
+});
+
 export function renderRequest(arr, link) {
   const markup = arr
     .map(
@@ -42,11 +48,6 @@ export function renderRequest(arr, link) {
   link.insertAdjacentHTML('beforeend', markup);
   const images = document.querySelectorAll('.item-img');
   images.forEach(img => (img.onload = () => img.classList.add('loaded')));
-  const simpleGallery = new SimpleLightbox('.item a', {
-    captions: true,
-    captionsData: 'alt',
-    captionDelay: 1000,
-  });
   simpleGallery.refresh();
 }
 
